@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import ErrorMessage from "./ErrorMessage";
 
 import { UserContext } from "../context/UserContext";
 
@@ -31,9 +32,9 @@ const Register = () => {
         const data = await response.json();
     
         if (!response.ok) {
-          setErrorMessage(data.detail);
+            setErrorMessage(data.detail);
         } else {
-          setToken(data.access_token);
+            setToken(data.access_token);
         }
     };
     
@@ -96,10 +97,10 @@ const Register = () => {
                     </div>
                 </div>
 
-                {/* <ErrorMessage message={errorMessage} /> */}
+                <ErrorMessage message={errorMessage} />
                 <br />
                 <button className="button is-primary" type="submit">
-                    Register
+                    Sign Up
                 </button>
             </form>
         </div>
