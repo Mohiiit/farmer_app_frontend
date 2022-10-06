@@ -4,12 +4,12 @@ import React, { useContext, useEffect, useState } from "react";
 
 import ErrorMessage from "./ErrorMessage";
 import { UserContext } from "../context/UserContext";
+import ProfileDataModel from "./ProfileDataModel";
 
 const Table = () => {
     const [token] = useContext(UserContext);
     const [errorMessage, setErrorMessage] = useState("");
     const [loaded, setLoaded] = useState(false);
-    const [activeModal, setActiveModal] = useState(false);
     const [language, setLanguage] = useState("");
     const [data, setData] = useState(null);
 
@@ -37,10 +37,7 @@ const Table = () => {
     //     getData();
     // }, []);
 
-    const handleModal = () => {
-        setActiveModal(!activeModal);
-        getData();
-    };
+    
 
     const handleSubmit = (e) => {
         setData(null);
