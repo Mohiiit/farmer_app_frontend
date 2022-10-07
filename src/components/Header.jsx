@@ -25,7 +25,7 @@ const Header = ({ title }) => {
             },
         };
     
-        const response = await fetch("/users/me/", requestOptions);
+        const response = await fetch("/me", requestOptions);
         const data = await response.json();
     
         if (!response.ok) {
