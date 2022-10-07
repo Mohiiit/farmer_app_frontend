@@ -1,4 +1,6 @@
+# Frontend for the farmer project
 
+- backend link: https://github.com/Mohiiit/wadhwani_farmer_app
 ## Run Locally
 
 ### Clone the project
