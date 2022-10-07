@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import { UserContext } from "../context/UserContext";
+import React, { useState } from "react";
 
 const ProfileDataModel = ({ active, handleModal, token, username, setErrorMessage}) => {
     const [password, setPassword] = useState("");
@@ -7,17 +6,6 @@ const ProfileDataModel = ({ active, handleModal, token, username, setErrorMessag
     const [stateName, setStateName] = useState("");
     const [districtName, setDistrictName] = useState("");
     const [villageName, setVillageName] = useState("");
-    // const [token, setToken] = useContext(UserContext);
-
-    
-
-    // const preFormData = () => {
-    //     setFarmerName("string");
-    //     setStateName("string");
-    //     setDistrictName("string");
-    //     setVillageName("string");
-    //     setPassword("string");
-    // };
 
     const cleanFormData = () => {
         setFarmerName("");

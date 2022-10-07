@@ -2,13 +2,15 @@ import React, { useContext, useState } from "react";
 
 import { UserContext } from "../context/UserContext";
 import ProfileDataModel from "./ProfileDataModel";
-import ErrorMessage from "./ErrorMessage";
+
 
 const Header = ({ title }) => {
     const [token, setToken] = useContext(UserContext);
     const [activeModal, setActiveModal] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("");
+    const [, setErrorMessage] = useState("");
     const [username, setUsername] = useState("");
+    const [file, setFile] = useState();
+
 
     const handleLogout = () => {
         setToken(null);
@@ -38,6 +40,24 @@ const Header = ({ title }) => {
         setActiveModal(!activeModal);
     };
 
+    const handleFileUpload = async (e) => {
+        e.preventDefault();
+        const data = new FormData();
+        data.append("file", file, file.name);
+        const requestOptions = {
+            method: "POST",
+            body: data
+        };
+    
+        const response = await fetch("/upload", requestOptions);
+    
+        if (!response.ok) {
+            setErrorMessage(data.detail);
+        } else {
+            console.log(response.data);
+        }
+    };
+
     return (
         <div className="has-text-centered m-6">
             <h1 className="title">{title}</h1>
@@ -56,6 +76,24 @@ const Header = ({ title }) => {
                 <button className="button mr-2 is-info is-light" onClick={handleModal}>
                     Change Profile Data
                 </button>
+                <br />
+                <div style={{ textAlign: "center" }}>
+                    <h1>REACTJS CSV IMPORT EXAMPLE </h1>
+                    <form>
+                        <input
+                            type={"file"}
+                            accept={".csv"}
+                            onChange={(e) => setFile(e.target.files[0])}
+                        />
+                        <button
+                            onClick={(e) => {
+                                handleFileUpload(e);
+                            }}
+                        >
+                            Upload .csv
+                        </button>
+                    </form>
+                </div>
                 </>
             )}
         </div>

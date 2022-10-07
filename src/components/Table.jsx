@@ -1,14 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 
-// import moment from "moment";
-
-import ErrorMessage from "./ErrorMessage";
 import { UserContext } from "../context/UserContext";
-import ProfileDataModel from "./ProfileDataModel";
+
 
 const Table = () => {
     const [token] = useContext(UserContext);
-    const [errorMessage, setErrorMessage] = useState("");
+    const [, setErrorMessage] = useState("");
     const [loaded, setLoaded] = useState(false);
     const [language, setLanguage] = useState("");
     const [data, setData] = useState(null);
