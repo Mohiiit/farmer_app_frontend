@@ -50,7 +50,7 @@ const Table = () => {
                     <h1 className="title has-text-centered"> Choose Language </h1>
 
                     <div className="field">
-                        <label className="label">Language</label>
+                        <label className="label">Language (Hindi, English, Marathi, Punjabi, Telugu)</label>
                         <div className="control">
                             <input type="string" placeholder="Choose Language" value={language} onChange={(e) => setLanguage(e.target.value)} className="input" required />
                         </div>
