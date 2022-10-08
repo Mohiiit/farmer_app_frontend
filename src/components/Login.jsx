@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import ErrorMessage from "./ErrorMessage";
 import { UserContext } from "../context/UserContext";
 
-const Login = () => {
+const Login = ({ handleLogin }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
@@ -37,19 +37,19 @@ const Login = () => {
         <div className="column">
             <form className="box" onSubmit={handleSubmit}>
 
-                <h1 className="title has-text-centered"> LogIn</h1>
+                <h1 className="title has-text-centered"> Log In</h1>
 
                 <div className="field">
                     <label className="label">Phone Number</label>
                     <div className="control">
-                        <input type="string" placeholder="Enter Your Phone Number" value={username} onChange={(e) => setUsername(e.target.value)} className="input" required />
+                        <input type="string" placeholder="Enter Your Phone Number" value={username} onChange={(e) => setUsername(e.target.value)} className="input" />
                     </div>
                 </div>
 
                 <div className="field">
                     <label className="label">Password</label>
                     <div className="control">
-                        <input type="password" placeholder="Enter Your Password" value={password} onChange={(e) => setPassword(e.target.value)} className="input" required />
+                        <input type="password" placeholder="Enter Your Password" value={password} onChange={(e) => setPassword(e.target.value)} className="input" />
                     </div>
                 </div>
 
@@ -58,7 +58,10 @@ const Login = () => {
                 <button className="button is-primary" type="submit">
                     LogIn
                 </button>
-            </form>
+                <button className="button is-light" onClick={handleLogin}>
+                    Sign Up
+                </button>
+            </form> 
         </div>
     );  
 };

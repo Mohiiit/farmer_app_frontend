@@ -7,6 +7,7 @@ import Table from "./components/Table";
 function App() {
   const[message, setMessage] = useState("");
   const [token, ] = useContext(UserContext);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const getWelcomeMessage = async () => {
     const requestOptions = {
@@ -29,6 +30,12 @@ function App() {
   useEffect(() => {
     getWelcomeMessage();
   }, []);
+
+  const handleLogin = () => {
+    // e.preventDefault();
+    setLoggedIn(!loggedIn);
+  }
+
   return (
     <>
       <Header title={message} />
@@ -36,9 +43,23 @@ function App() {
         <div className="column"></div>
         <div className="column m-5 is-two-thirds">
           {!token ? (
-            <div className="columns">
-              <Register /> <Login />
-            </div>
+            <>
+            {!loggedIn ? (
+              <>
+                <div className="column has-text-centered">
+                  Already a user? Click the button: 
+                  <button className="button is-primary" onClick={handleLogin}> Login </button>
+                </div>
+                <div className="columns">
+                  <Register />
+                </div>
+              </>
+            ): (
+              <Login
+                handleLogin={handleLogin}
+              />
+            )}
+            </>
           ) : (
             <Table />
           )}

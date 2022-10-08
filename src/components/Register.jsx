@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import ErrorMessage from "./ErrorMessage";
+import RegsiterModal from "./Modals/RegisterModal";
 
 import { UserContext } from "../context/UserContext";
 
@@ -10,8 +11,8 @@ const Register = () => {
     const [stateName, setStateName] = useState("");
     const [districtName, setDistrictName] = useState("");
     const [villageName, setVillageName] = useState("");
-    const [errorMessage, setErrorMessage] = useState("");
-
+    const [activeModal, setActiveModal] = useState(false);
+    const [message, setMessage] = useState("");
     const [, setToken] = useContext(UserContext);
 
     const submitRegistration = async () => {
@@ -32,25 +33,36 @@ const Register = () => {
         const data = await response.json();
     
         if (!response.ok) {
-            setErrorMessage(data.detail);
+            setMessage(data.detail);
         } else {
             setToken(data.access_token);
+            setMessage("You can log in now!!!!");
         }
     };
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (password.length > 1) {
+        if (password.length > 5) {
             submitRegistration();
         } else {
-            setErrorMessage(
-                "Ensure that the passwords match and greater than 1 character"
+            setMessage(
+                "Ensure that the password is strong and has greater than 5 characters"
             );
         }
+        handleModal();
     };
+
+    const handleModal = () => {
+        setActiveModal(!activeModal);
+    }
 
     return (
         <div className="column">
+            <RegsiterModal
+                active={activeModal}
+                handleModal={handleModal}
+                response={message}
+            />
             <form className="box" onSubmit={handleSubmit}>
 
                 <h1 className="title has-text-centered"> Register</h1>
@@ -97,7 +109,6 @@ const Register = () => {
                     </div>
                 </div>
 
-                <ErrorMessage message={errorMessage} />
                 <br />
                 <button className="button is-primary" type="submit">
                     Sign Up
