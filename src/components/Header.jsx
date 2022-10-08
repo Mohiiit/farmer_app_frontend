@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 
 import { UserContext } from "../context/UserContext";
-import ProfileDataModel from "./ProfileDataModel";
+import ProfileDataModel from "./Modals/ProfileDataModel";
 
 
 const Header = ({ title }) => {

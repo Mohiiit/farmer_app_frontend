@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import ErrorMessage from "./ErrorMessage";
-import RegsiterModal from "./RegisterModal";
+import RegsiterModal from "./Modals/RegisterModal";
 
 import { UserContext } from "../context/UserContext";
 

@@ -31,10 +31,11 @@ function App() {
     getWelcomeMessage();
   }, []);
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    setLoggedIn(true);
+  const handleLogin = () => {
+    // e.preventDefault();
+    setLoggedIn(!loggedIn);
   }
+
   return (
     <>
       <Header title={message} />
@@ -54,7 +55,9 @@ function App() {
                 </div>
               </>
             ): (
-              <Login />
+              <Login
+                handleLogin={handleLogin}
+              />
             )}
             </>
           ) : (
